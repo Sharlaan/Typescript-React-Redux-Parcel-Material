@@ -2,20 +2,23 @@
 
 This repository has basic settings for buildling react application in Typescript.
 
+This repository is a fork from [TS Starter](https://github.com/adhrinae/ts-react-parcel).
+
 The original source code of the provided example is in [here](https://kentcdodds.com/blog/compound-components-with-react-hooks).
 
 ## Built in settings
 
 - React + ReactDOM (16.8+)
+- Material-UI (4+)
 - Typescript (with TSLint setting)
 - Prettier + tslint-config-prettier
-- Test configuration using Jest and [react-testing-library](https://github.com/kentcdodds/react-testing-library)
+- Test configuration using Jest and [react-testing-library](https://github.com/testing-library/react-testing-library)
 - Parcel bundler (1.12+)
 
 ## How to set up the project
 
-**Disclaimer**  
-Since I only use Yarn as my primary package manager, this repository will ignore `package-lock.json` file on commit.  
+**Disclaimer**
+Since I only use Yarn as my primary package manager, this repository will ignore `package-lock.json` file on commit.
 If you prefer npm to Yarn, Please modify `.gitignore` file following your flavor.
 
 ```
@@ -60,7 +63,7 @@ Test file's name should be `SOURCE.test.ts/tsx/js` or `SOURCE.spec.ts/tsx/js`.
 
 ## Miscellaneous
 
-This Project uses pre-commit hook for `prettier` and testing application.  
+This Project uses pre-commit hook for `prettier` and testing application.
 If you don't like it, remove the `husky` package from your repository and erase following scripts.
 
     yarn remove husky
