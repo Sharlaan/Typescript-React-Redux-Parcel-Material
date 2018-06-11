@@ -1,39 +1,47 @@
-import './switch.styles.css'
+import Button from '@material-ui/core/Button'
+import Paper from '@material-ui/core/Paper'
+import {
+  createStyles,
+  Theme,
+  withStyles,
+  WithStyles,
+} from '@material-ui/core/styles'
+import Switch from '@material-ui/core/Switch'
 import * as React from 'react'
+import { InjectedProps, toggle } from '../containers/toggle'
 
-const noop = () => {}
+const styles = (theme: Theme) =>
+  createStyles({
+    paper: {
+      width: '100%',
+      padding: theme.spacing(3),
+      display: 'flex',
+      alignItems: 'center',
+    },
+    tooMuch: { flex: 1 },
+  })
 
-export interface SwitchProps extends React.HTMLProps<HTMLLabelElement> {
-  on: boolean
-  onClick: () => void
-}
+interface CounterProps extends WithStyles<typeof styles> {}
 
-export function Switch({
-  on,
-  className = '',
-  onClick,
-  'aria-label': ariaLabel,
-  ...props
-}: SwitchProps) {
-  const btnClassName = React.useMemo(
-    () =>
-      [className, 'toggle-btn', on ? 'toggle-btn-on' : 'toggle-btn-off']
-        .filter(Boolean)
-        .join(' '),
-    [on]
-  )
+const SFCCounter: React.FunctionComponent<InjectedProps & CounterProps> = ({
+  classes,
+  count,
+  onToggle,
+  onReset,
+}) => (
+  <Paper className={classes.paper}>
+    <Switch onChange={onToggle} disabled={count > 4} />
+    {count <= 4 ? (
+      <span>Click count: {count}</span>
+    ) : (
+      <>
+        <div className={classes.tooMuch}>You've clicked too much !</div>
+        <Button variant="outlined" onClick={onReset}>
+          Reset
+        </Button>
+      </>
+    )}
+  </Paper>
+)
 
-  return (
-    <label aria-label={ariaLabel || 'Toggle'} style={{ display: 'block' }}>
-      <input
-        className="toggle-input"
-        type="checkbox"
-        checked={on}
-        onChange={noop}
-        onClick={onClick}
-        data-testid="toggle-input"
-      />
-      <span className={btnClassName} {...props} />
-    </label>
-  )
-}
+export default withStyles(styles)(toggle(SFCCounter))

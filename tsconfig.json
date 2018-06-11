@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "commonjs",
-    "strict": true,
-    "jsx": "react",
-    "rootDir": "./src",
-    "incremental": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "es2015"]
+    "incremental": true,
+    "jsx": "react",
+    "lib": ["dom", "es2015"],
+    "module": "commonjs", // "es2015" for tree-shaking
+    "rootDir": "./src",
+    "strict": true,
+    "target": "esnext"
   }
 }
